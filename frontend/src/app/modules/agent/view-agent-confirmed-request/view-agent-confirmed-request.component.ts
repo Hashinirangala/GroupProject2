@@ -12,6 +12,7 @@ export class ViewAgentConfirmedRequestComponent implements OnInit {
 
   retrieveConfirmes : Observable<WasteRequest[]>
   requestEmptyListFlag = false;
+  requests: WasteRequest;
 
   constructor(private customerWasteRequestService:CustomerWasteRequestService) { }
 
@@ -35,6 +36,38 @@ export class ViewAgentConfirmedRequestComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  confirm(id:number){
+    var type;
+    var sum;
+      this.customerWasteRequestService.getCustomerWasteRequest(id).subscribe(
+        (data) => {
+          this.requests = data;
+          this.requests.status = 'Completed';
+         
+          console.log(data);
+          // type = this.requests.wasteType;
+          // sum = this.requests.quantity;
+          // this.getType(type,sum);
+  
+          this.customerWasteRequestService
+          .updateCustomerWasteRequest(id, this.requests)
+          .subscribe(
+            (data) => console.log(data),
+            (error) => {
+              console.log(error);
+            }
+          );
+        },
+        (error) => console.log(error)
+      );
+  
+      
+     
+     
+      this.reloadData();
+    
   }
 
 }

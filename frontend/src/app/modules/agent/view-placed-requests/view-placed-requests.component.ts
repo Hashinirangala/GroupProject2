@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { getType } from '@angular/flex-layout/extended/typings/style/style-transforms';
 import { Observable } from 'rxjs';
 import { SummaryStock } from 'src/app/pojo/summary-stock';
 import { SummaryStockService } from 'src/app/service/summary-stock.service';

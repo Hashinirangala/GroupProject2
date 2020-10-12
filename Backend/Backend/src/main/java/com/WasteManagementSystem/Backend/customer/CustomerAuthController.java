@@ -96,17 +96,12 @@ public class CustomerAuthController {
     }
 
     @PutMapping("/updateCustomerProfile")
-	public User updateCustomerProfile(@RequestBody Customer customer) {
+	public Customer updateCustomerProfile(@RequestBody Customer customer) {
 		
-		User updatedCustomer = CustomerAuthService.saveUser(customer);
+		Customer updatedCustomer = CustomerAuthService.saveUser(customer);
 		return updatedCustomer;
 	}
 
-
-
-	
-    
-    
     @GetMapping("/getCustomerByType/{type}")
 	public String[] getUserByType(@PathVariable String type) {
 		return CustomerAuthService.findCompanyByType(type); 
